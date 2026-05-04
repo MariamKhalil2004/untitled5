@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:untitled5/views/homepage/view.dart';
 
-class LoginView extends StatelessWidget {
+import '../../core/ui/appbar.dart';
+
+class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
   @override
+  State<LoginView> createState() => _LoginView();
+}
+
+class _LoginView extends State<LoginView> {
+  bool ishidden=true;
+  final formKey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.arrow_back),
-        ),
-        title: const Text("Login"),
-      ),
-      body: SingleChildScrollView(
+      appBar: CustomAppBar(title: "Profile",),
+
+      body:Form(
+        key: formKey,
+        onChanged: (){
+          formKey.currentState!.validate();
+
+
+    },
+        child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(17),
           child: Column(
@@ -28,43 +40,70 @@ class LoginView extends StatelessWidget {
               ),
               const SizedBox(height: 39),
 
-              // Email field
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   hintText: "Enter your email",
                 ),
+
+                validator:(value){
+                  if (value == null || value.isEmpty)
+                    {
+                      return"Please enter your email";
+                    }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
 
-              // Password field
               TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock),
+                obscureText: ishidden,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock),
                   hintText: "Enter your password",
-                  suffixIcon: Icon(Icons.visibility_off),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      ishidden ? Icons.visibility_off : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        ishidden = !ishidden;
+                      });
+                    },
+                  ),
                 ),
+                validator:(value){
+                  if (value == null || value.isEmpty)
+                  {
+                    return"Please enter your password";
+                  }else if(value.length<7){
+                    return"Weak password";
+
+                  }
+
+                  return null;
+                },
               ),
               const SizedBox(height: 8),
 
-              // Forgot Password text
-              Align(
-                alignment: AlignmentDirectional.centerEnd,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Forgot Password?",
-                    style: TextStyle(color: Color(0xFFDD8560)),
-                  ),
-                ),
-              ),
+
               const SizedBox(height: 24),
 
-              // Login button
+
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePageView(),
+                      ),
+                    );
+
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFDD8560),
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -79,134 +118,11 @@ class LoginView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // Sign up row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Don’t have an account? "),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(color: Color(0xFFDD8560)),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // OR divider
-              Row(
-                children: const [
-                  Expanded(child: Divider(thickness: 1)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text("OR"),
-                  ),
-                  Expanded(child: Divider(thickness: 1)),
-                ],
-              ),
-              const SizedBox(height: 16),
-
-              // Google Sign-in button
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  side: const BorderSide(color: Color(0xFFE5E7EB), width: 1.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  minimumSize: const Size(double.infinity, 56.0),
-                  textStyle: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.network(
-                      'https://tse2.mm.bing.net/th/id/OIP._2KcAjhfLzoZm34LMGXQdwHaHa?pid=Api&P=0&h=220',
-                      width: 24.0,
-                      height: 24.0,
-                    ),
-                    const SizedBox(width: 12),
-                    const Text("Sign in with Google"),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  side: const BorderSide(color: Color(0xFFE5E7EB), width: 1.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  minimumSize: const Size(double.infinity, 56.0),
-                  textStyle: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.network(
-                      "https://tse3.mm.bing.net/th/id/OIP.FOcbgHN380XF82JGAwdpfgHaHa?pid=Api&P=0&h=220",
-                      width: 24.0,
-                      height: 24.0,
-                    ),
-                    const SizedBox(width: 12),
-                    const Text("Sign in with apple"),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              OutlinedButton(
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black,
-                  backgroundColor: Colors.white,
-                  side: const BorderSide(color: Color(0xFFE5E7EB), width: 1.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  minimumSize: const Size(double.infinity, 56.0),
-                  textStyle: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.network(
-                      "https://tse4.mm.bing.net/th/id/OIP.LZKNqJ8oShHxX00LnMGRJAHaHa?pid=Api&P=0&h=220",
-                      width: 24.0,
-                      height: 24.0,
-                    ),
-                    const SizedBox(width: 12),
-                    const Text("Sign in with facebook"),
-                  ],
-                ),
-              ),
             ],
           ),
+
         ),
+      ),
       ),
     );
   }
