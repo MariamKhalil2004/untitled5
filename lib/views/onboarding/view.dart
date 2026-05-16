@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:untitled5/core/logic/helper_methods.dart';
-import 'package:untitled5/views/homepage/view.dart';
+import'package:flutter/material.dart';
 import 'package:untitled5/views/login/Login.dart';
 
 class OnBoardingView extends StatefulWidget {
@@ -18,17 +16,20 @@ class _OnBoardingViewState extends State<OnBoardingView> {
       image: "onboarding0.jpg",
       title: "Welcome To Fashion",
       description:
-          "Discover the latest trends and exclusive styles \nfrom our top designers",
+      "Discover the latest trends and exclusive styles \nfrom our top designers",
     ),
     _Data(
       image: "onboarding1.jpg",
       title: "Explore & Shop",
       description:
-          "Discover a wide range of fashion categories,\nbrowse new arrivals and shop your favourites",
+      "Discover a wide range of fashion categories,\nbrowse new arrivals and shop your favourites",
     ),
-    _Data(image: "onboarding0.jpg", title: "Hi, Shop Now", description: ""),
+    _Data(
+      image: "onboarding0.jpg",
+      title: "Hi, Shop Now",
+      description: "",
+    ),
   ];
-
 
   void goToNextPage() {
     if (!mounted) return;
@@ -57,23 +58,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (currentView != list.length - 1)
-                    Align(
-                      alignment: AlignmentDirectional.centerEnd,
-                      child: OutlinedButton(
-                        onPressed: () {
-                          currentView = list.length - 1;
-                          setState(() {});
-                          goToNextPage();
-
-                        },
-                        child: const Text(
-                          'Skip',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-
                   const Spacer(),
 
                   Text(
@@ -102,7 +86,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
                   Row(
                     children: [
-                      // Back Button
                       if (currentView != 0)
                         FloatingActionButton(
                           onPressed: () {
@@ -113,7 +96,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           },
                           backgroundColor: Colors.transparent,
                           elevation: 0,
-                          shape: const CircleBorder(side: BorderSide()),
+                          shape: const CircleBorder(
+                            side: BorderSide(),
+                          ),
                           child: const Padding(
                             padding: EdgeInsetsDirectional.only(start: 8),
                             child: Icon(
@@ -127,7 +112,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
                       ...List.generate(
                         list.length,
-                        (index) => Padding(
+                            (index) => Padding(
                           padding: EdgeInsetsDirectional.only(
                             end: index != list.length - 1 ? 12 : 0,
                           ),
@@ -142,9 +127,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
                       const Spacer(),
 
-                      // Next Button
                       FloatingActionButton(
-
                         onPressed: () {
                           if (currentView == list.length - 1) {
                             goToNextPage();
@@ -176,5 +159,9 @@ class _Data {
   final String image, title;
   final String? description;
 
-  _Data({required this.image, required this.title, this.description});
+  _Data({
+    required this.image,
+    required this.title,
+    this.description,
+  });
 }

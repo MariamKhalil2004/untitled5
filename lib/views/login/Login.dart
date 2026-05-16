@@ -16,7 +16,7 @@ class _LoginView extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Profile",),
+      appBar: CustomAppBar(title: "Login",),
 
       body:Form(
         key: formKey,
@@ -117,7 +117,6 @@ class _LoginView extends State<LoginView> {
                 ),
               ),
               const SizedBox(height: 16),
-
             ],
           ),
 

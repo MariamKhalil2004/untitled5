@@ -35,31 +35,18 @@ class _HomePageViewState extends State<HomePageView> {
           child: Column(
             children: [
               SafeArea(
-                child: Row(
-                  children: [
-                    const Text(
-                      'Hello Mariam',
-                      style:
-                      TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    'Hello Mariam',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
                     ),
-                    const Spacer(),
-                    CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.notifications_none_sharp,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              // 🔹 Banner
               Container(
                 height: 160,
                 width: double.infinity,

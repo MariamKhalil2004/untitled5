@@ -8,7 +8,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Profile",),
+      appBar: CustomAppBar(title: "Profile",showBackButton: true,),
       body: ListView(
         padding: EdgeInsets.all(19),
         children: [

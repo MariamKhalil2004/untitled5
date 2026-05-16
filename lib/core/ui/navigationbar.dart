@@ -23,8 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
       default:
         screen =  HomePageView();
     }
-
-    Navigator.pushReplacement(
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => screen),
     );
@@ -36,8 +35,8 @@ class CustomBottomNavBar extends StatelessWidget {
       currentIndex: currentIndex,
       onTap: (index) => _onItemTapped(context, index),
 
-      selectedItemColor: const Color(0xffDD8560), // 🟠 active
-      unselectedItemColor: const Color(0xff676767), // ⚫ inactive
+      selectedItemColor: const Color(0xffDD8560),
+      unselectedItemColor: const Color(0xff676767),
 
       items: const [
         BottomNavigationBarItem(

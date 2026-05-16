@@ -5,7 +5,6 @@ import 'package:untitled5/views/login/Login.dart';
 import 'package:untitled5/views/onboarding/view.dart';
 import 'core/logic/helper_methods.dart';
 import 'package:untitled5/views/Splash/view.dart';
-import 'package:untitled5/views/homepage/view.dart';
 void main() {
   runApp(
     MaterialApp(
